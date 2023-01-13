@@ -9,7 +9,7 @@ An emulator for testing the programs before deploying them
 ## Architecture
 This CPU is based on an accumulator architecture, that means that it has only got one register : the accumulator. All instructions(that have a result) will write their result in the accumulator. The only way to write memory is by using the `STO` instruction which will copy the accumulator to the memory at the given address.
 
-The program is stored in a ROM with a width of 14 bits. The first 6 bits are for the opcode, the 8 others are used as an operand(eighter an address or a constant) or ignored if the instruction doesn't need one.
+The program is stored in a ROM with a width of 14 bits. The first 6 bits are for the opcode, the 8 others are used as an operand(either an address or a constant) or ignored if the instruction doesn't need one.
 
 The CPU uses 4 flags :
 
@@ -26,7 +26,7 @@ N : negative flag \
 Changes every time the accumulator value changes : set to 1 if number is negative and to 0 otherwise (takes the value of the first bit of the number)
 
 ## Opcodes / Instructions
-0x01 -> STO addr
+0x01 -> ST addr \
 Stores accumulator at the given address
 
 0x02 -> LD const \
@@ -92,7 +92,7 @@ Set C flag to N flag
 Conditional jumps to addresses depending on flags values \
 Note that the given address is not a RAM address but the nth instruction in ROM
 
-0x22 -> BRA \
+0x22 -> BRA addr \
 Unconditional jump to given address \
 Note that the given address is not a RAM address but the nth instruction in ROM
 
