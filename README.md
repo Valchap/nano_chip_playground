@@ -45,11 +45,11 @@ Logical or with a constant or value at given address
 0x09 -> XOR addr \
 Logical xor with a constant or value at given address
 
-0x0A -> SHL acc \
-Shift the accumulator one bit to the left
+0x0A -> ROL acc \
+Shift the accumulator one bit to the left, the carry bit is used to fill to the right
 
-0x0B -> SHR acc \
-Shift the accumulator one bit to the right
+0x0B -> ROR acc \
+Shift the accumulator one bit to the right, the carry bit is used to fill to the left
 
 0x0C -> ADD const \
 0x0D -> ADD addr \

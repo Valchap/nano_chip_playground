@@ -33,12 +33,12 @@ fn test_xor() {
 
 #[test]
 fn test_shl() {
-    assert_eq!(parse("SHL ACC"), Ok(vec![0x0A00]));
+    assert_eq!(parse("ROL ACC"), Ok(vec![0x0A00]));
 }
 
 #[test]
 fn test_shr() {
-    assert_eq!(parse("SHR ACC"), Ok(vec![0x0B00]));
+    assert_eq!(parse("ROR ACC"), Ok(vec![0x0B00]));
 }
 
 #[test]

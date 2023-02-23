@@ -118,9 +118,10 @@ impl NanoChipEmulator<'_> {
                 self.pc += 1;
             }
 
-            // SHL acc
+            // ROL acc
             0x0A => {
                 (self.accumulator, self.c_flag) = self.accumulator.overflowing_shl(1);
+                self.accumulator |= if self.c_flag { 1 } else { 0 };
 
                 self.z_flag = self.accumulator == 0;
                 self.n_flag = self.accumulator > 0x7F;
@@ -128,9 +129,10 @@ impl NanoChipEmulator<'_> {
                 self.pc += 1;
             }
 
-            // SHR acc
+            // ROR acc
             0x0B => {
                 (self.accumulator, self.c_flag) = self.accumulator.overflowing_shr(1);
+                self.accumulator |= if self.c_flag { 0b10000000 } else { 0 };
 
                 self.z_flag = self.accumulator == 0;
                 self.n_flag = self.accumulator > 0x7F;
