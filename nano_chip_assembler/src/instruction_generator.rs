@@ -4,8 +4,8 @@ pub enum Instruction {
     And,
     Or,
     Xor,
-    Shl,
-    Shr,
+    Rol,
+    Ror,
     Add,
     Adc,
     Neg,
@@ -91,25 +91,25 @@ fn generate_xor(parameters: &[Parameter]) -> Result<u16, String> {
     }
 }
 
-fn generate_shl(parameters: &[Parameter]) -> Result<u16, String> {
+fn generate_rol(parameters: &[Parameter]) -> Result<u16, String> {
     if parameters.len() != 1 {
-        return Err("SHL instruction always takes a single parameter".to_owned());
+        return Err("ROL instruction always takes a single parameter".to_owned());
     }
 
     match parameters[0] {
         Parameter::Acc => Ok(0x0A << 8),
-        _ => Err("SHL takes acc as parameter".to_owned()),
+        _ => Err("ROL takes acc as parameter".to_owned()),
     }
 }
 
-fn generate_shr(parameters: &[Parameter]) -> Result<u16, String> {
+fn generate_ror(parameters: &[Parameter]) -> Result<u16, String> {
     if parameters.len() != 1 {
-        return Err("SHR instruction always takes a single parameter".to_owned());
+        return Err("ROR instruction always takes a single parameter".to_owned());
     }
 
     match parameters[0] {
         Parameter::Acc => Ok(0x0B << 8),
-        _ => Err("SHR takes acc as parameter".to_owned()),
+        _ => Err("ROR takes acc as parameter".to_owned()),
     }
 }
 
@@ -314,8 +314,8 @@ pub fn generate_instruction(
         Instruction::And => generate_and(parameters),
         Instruction::Or => generate_or(parameters),
         Instruction::Xor => generate_xor(parameters),
-        Instruction::Shl => generate_shl(parameters),
-        Instruction::Shr => generate_shr(parameters),
+        Instruction::Rol => generate_rol(parameters),
+        Instruction::Ror => generate_ror(parameters),
         Instruction::Add => generate_add(parameters),
         Instruction::Adc => generate_adc(parameters),
         Instruction::Neg => generate_neg(parameters),
