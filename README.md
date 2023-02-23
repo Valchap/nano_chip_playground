@@ -7,7 +7,7 @@ An assembler that can generate binary output or VHDL code for direct use as a RO
 An emulator for testing the programs before deploying them
 
 ## Architecture
-This CPU is based on an accumulator architecture, that means that it has only got one register : the accumulator. All instructions(that have a result) will write their result in the accumulator. The only way to write memory is by using the `STO` instruction which will copy the accumulator to the memory at the given address.
+This CPU is based on an accumulator architecture, that means that it has only got one register : the accumulator. All instructions(that have a result) will write their result in the accumulator. The only way to write memory is by using the `ST` instruction which will copy the accumulator to the memory at the given address.
 
 The program is stored in a ROM with a width of 14 bits. The first 6 bits are for the opcode, the 8 others are used as an operand(either an address or a constant) or ignored if the instruction doesn't need one.
 

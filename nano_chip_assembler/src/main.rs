@@ -1,4 +1,5 @@
 #![warn(clippy::pedantic)]
+#![warn(clippy::nursery)]
 #![allow(clippy::too_many_lines)]
 #![allow(clippy::cast_lossless)]
 #![allow(clippy::cast_possible_truncation)]
