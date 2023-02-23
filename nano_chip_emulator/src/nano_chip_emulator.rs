@@ -390,6 +390,7 @@ impl NanoChipEmulator<'_> {
         }
 
         println!();
+        println!("Accumulator : {:x}", self.accumulator);
         println!("Program Counter : {:x}", self.pc);
         println!("Opcode : {:x}", self.rom[self.pc as usize] >> 8);
         println!("Operand : {:x}", self.rom[self.pc as usize] & 0xFF);
