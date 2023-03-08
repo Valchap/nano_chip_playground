@@ -4,9 +4,11 @@
 #![allow(clippy::cast_lossless)]
 #![allow(clippy::cast_possible_truncation)]
 #![allow(clippy::match_wildcard_for_single_variants)]
+#![allow(clippy::option_if_let_else)]
 
 mod instruction_generator;
 mod parser;
+mod syntax_tree;
 mod tests;
 
 fn main() {
