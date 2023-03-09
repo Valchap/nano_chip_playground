@@ -120,8 +120,12 @@ impl NanoChipEmulator<'_> {
 
             // ROL acc
             0x0A => {
-                (self.accumulator, self.c_flag) = self.accumulator.overflowing_shl(1);
+                let new_c_flag = self.accumulator > 0x7F;
+
+                self.accumulator <<= 1;
                 self.accumulator |= if self.c_flag { 1 } else { 0 };
+
+                self.c_flag = new_c_flag;
 
                 self.z_flag = self.accumulator == 0;
                 self.n_flag = self.accumulator > 0x7F;
@@ -131,8 +135,12 @@ impl NanoChipEmulator<'_> {
 
             // ROR acc
             0x0B => {
-                (self.accumulator, self.c_flag) = self.accumulator.overflowing_shr(1);
+                let new_c_flag = self.accumulator % 2 == 1;
+
+                self.accumulator >>= 1;
                 self.accumulator |= if self.c_flag { 0b10000000 } else { 0 };
+
+                self.c_flag = new_c_flag;
 
                 self.z_flag = self.accumulator == 0;
                 self.n_flag = self.accumulator > 0x7F;
@@ -384,9 +392,9 @@ impl NanoChipEmulator<'_> {
     }
 
     pub fn print_status(&self) {
-        for y in 0..8 {
-            for x in 0..8 {
-                print!("{:3x}", self.ram[y * 8 + x]);
+        for y in 0..16 {
+            for x in 0..16 {
+                print!("{:3x}", self.ram[y * 16 + x]);
             }
             println!();
         }
