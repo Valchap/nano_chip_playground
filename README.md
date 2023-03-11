@@ -1,7 +1,9 @@
 # Nano Chip Playground
 
 ## Assembler
-An assembler that can generate binary output or VHDL code for direct use as a ROM
+An assembler that can generate binary programs
+
+There is also a small tool for generating VHDL ROM from a binary file
 
 ## Emulator
 An emulator for testing the programs before deploying them
@@ -99,3 +101,14 @@ Note that the given address is not a RAM address but the nth instruction in ROM
 0x3F -> NOP \
 Does nothing
 
+## Constants and Labels
+Constants can be created using the `$` symbol \
+For example `$const 25` creates a constant named $variable with a value of 25 \
+Constants can then be used as parameter after an opcode \
+`LD $const` Loads 25 in the accumulator \
+`LD [$const]` Loads the value at address 25 in the accumulator
+
+Labels can be created using the `:` symbol \
+For example `:label` creates a label name :label with next instruction's ROM address as value \
+Labels can then be used as parameter after an opcode \
+`BRA :label` Will make the control flow jump to :label
