@@ -44,9 +44,9 @@ fn main() {
                 }
             }
         } else {
-            println!("Error need output file as second argument");
+            println!("Error, output file is needed as second argument");
         }
     } else {
-        println!("Error needs input file as first argument");
+        println!("Error, input file is needed as first argument");
     }
 }
